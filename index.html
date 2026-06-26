@@ -623,36 +623,55 @@
       </div>
     </div>
 
-    <!-- Freshman State -->
-    <div class="tournament">
-      <div class="tournament-header">
-        <div class="tournament-icon"></div>
-        <span class="tournament-name">Freshman State</span>
+    <!-- Tournaments -->
+    <div class="tournament-group">
+      <div class="group-header">
+        <div class="tournament-icon" style="background:var(--mat-gold)"></div>
+        <span class="group-label">Tournaments</span>
       </div>
-      <div class="video-grid" id="freshman-state">
-        <div class="empty-slot"><p>Videos coming soon</p></div>
-      </div>
-    </div>
 
-    <!-- LSN JV Tournament -->
-    <div class="tournament">
-      <div class="tournament-header">
-        <div class="tournament-icon"></div>
-        <span class="tournament-name">LSN JV Tournament</span>
+      <!-- Helias Duals Invitational -->
+      <div class="tournament tournament-nested">
+        <div class="tournament-header">
+          <div class="tournament-icon"></div>
+          <span class="tournament-name">Helias Duals Invitational</span>
+        </div>
+        <div class="video-grid" id="helias-invitational">
+          <div class="empty-slot"><p>Videos coming soon</p></div>
+        </div>
       </div>
-      <div class="video-grid" id="lsn-jv">
-        <div class="empty-slot"><p>Videos coming soon</p></div>
-      </div>
-    </div>
 
-    <!-- Nationals -->
-    <div class="tournament">
-      <div class="tournament-header">
-        <div class="tournament-icon"></div>
-        <span class="tournament-name">Nationals</span>
+      <!-- Freshman State -->
+      <div class="tournament tournament-nested">
+        <div class="tournament-header">
+          <div class="tournament-icon"></div>
+          <span class="tournament-name">Freshman State</span>
+        </div>
+        <div class="video-grid" id="freshman-state">
+          <div class="empty-slot"><p>Videos coming soon</p></div>
+        </div>
       </div>
-      <div class="video-grid" id="nationals-fr">
-        <div class="empty-slot"><p>Videos coming soon</p></div>
+
+      <!-- LSN JV Tournament -->
+      <div class="tournament tournament-nested">
+        <div class="tournament-header">
+          <div class="tournament-icon"></div>
+          <span class="tournament-name">LSN JV Tournament</span>
+        </div>
+        <div class="video-grid" id="lsn-jv">
+          <div class="empty-slot"><p>Videos coming soon</p></div>
+        </div>
+      </div>
+
+      <!-- Nationals -->
+      <div class="tournament tournament-nested">
+        <div class="tournament-header">
+          <div class="tournament-icon"></div>
+          <span class="tournament-name">Nationals</span>
+        </div>
+        <div class="video-grid" id="nationals-fr">
+          <div class="empty-slot"><p>Videos coming soon</p></div>
+        </div>
       </div>
     </div>
   </div>
@@ -846,10 +865,11 @@
   // ADD PHOTOS:  addPhoto('grid-id', 'image-url', 'Caption')
   //
   // Grid IDs:
-  //   Camps:      granby-2026
-  //   Freshman:   helias-duals | freshman-state | lsn-jv | nationals-fr
-  //   Freestyle:  freestyle-2026
-  //   Greco:      greco-2026
+  //   Camps:              granby-2026
+  //   Freshman Duals:     helias-duals
+  //   Freshman Tourneys:  helias-invitational | freshman-state | lsn-jv | nationals-fr
+  //   Freestyle:          freestyle-2026
+  //   Greco:              greco-2026
   // ══════════════════════════════════════════
 
 </script>
