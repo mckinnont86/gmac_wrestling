@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wrestling Archive</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --mat-red:     #C8102E;
+      --mat-dark:    #0D0D0D;
+      --mat-charcoal:#1A1A1A;
+      --mat-gray:    #2A2A2A;
+      --mat-mid:     #444444;
+      --mat-light:   #A0A0A0;
+      --mat-white:   #F2F2F2;
+      --mat-gold:    #D4A017;
+      --accent:      #C8102E;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--mat-dark);
+      color: var(--mat-white);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+    }
+
+    /* ── HERO ── */
+    header {
+      position: relative;
+      background: var(--mat-charcoal);
+      border-bottom: 3px solid var(--mat-red);
+      padding: 48px 24px 36px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 40px,
+        rgba(200,16,46,0.04) 40px,
+        rgba(200,16,46,0.04) 41px
+      );
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      color: var(--mat-red);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .hero-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(42px, 8vw, 80px);
+      font-weight: 700;
+      line-height: 0.95;
+      letter-spacing: -0.01em;
+      color: var(--mat-white);
+      text-transform: uppercase;
+    }
+
+    .hero-name span {
+      color: var(--mat-red);
+    }
+
+    .hero-sub {
+      margin-top: 14px;
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--mat-light);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* ── NAV TABS ── */
+    nav {
+      display: flex;
+      gap: 2px;
+      background: var(--mat-charcoal);
+      padding: 0 16px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      border-bottom: 1px solid var(--mat-gray);
+    }
+
+    nav::-webkit-scrollbar { display: none; }
+
+    nav button {
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mat-light);
+      background: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      padding: 16px 20px 13px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    nav button:hover { color: var(--mat-white); }
+
+    nav button.active {
+      color: var(--mat-white);
+      border-bottom-color: var(--mat-red);
+    }
+
+    /* ── MAIN CONTENT ── */
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+
+    .section { display: none; }
+    .section.active { display: block; }
+
+    /* ── SECTION HEADER ── */
+    .section-header {
+      margin-bottom: 32px;
+    }
+
+    .section-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.35em;
+      color: var(--mat-red);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 32px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--mat-white);
+    }
+
+    /* ── TOURNAMENT BLOCK ── */
+    .tournament {
+      margin-bottom: 40px;
+    }
+
+    .tournament-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--mat-gray);
+    }
+
+    .tournament-icon {
+      width: 6px;
+      height: 28px;
+      background: var(--mat-red);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    .tournament-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--mat-white);
+    }
+
+    .tournament-meta {
+      margin-left: auto;
+      font-size: 11px;
+      color: var(--mat-mid);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* ── VIDEO GRID ── */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 12px;
+    }
+
+    /* ── VIDEO CARD ── */
+    .video-card {
+      background: var(--mat-charcoal);
+      border: 1px solid var(--mat-gray);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.15s;
+      cursor: pointer;
+      text-decoration: none;
+      display: block;
+    }
+
+    .video-card:hover {
+      border-color: var(--mat-red);
+      transform: translateY(-2px);
+    }
+
+    .video-thumb {
+      aspect-ratio: 16/9;
+      background: var(--mat-gray);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .video-thumb iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      pointer-events: none;
+    }
+
+    .play-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.3);
+      transition: background 0.2s;
+    }
+
+    .video-card:hover .play-overlay {
+      background: rgba(200,16,46,0.25);
+    }
+
+    .play-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--mat-red);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.5);
+    }
+
+    .play-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: white;
+      margin-left: 3px;
+    }
+
+    /* Placeholder thumb when no video yet */
+    .thumb-placeholder {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: var(--mat-gray);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: var(--mat-mid);
+    }
+
+    .thumb-placeholder svg {
+      width: 32px;
+      height: 32px;
+      opacity: 0.4;
+    }
+
+    .thumb-placeholder span {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .video-info {
+      padding: 12px 14px;
+    }
+
+    .video-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--mat-white);
+      margin-bottom: 4px;
+    }
+
+    .video-desc {
+      font-size: 11px;
+      color: var(--mat-light);
+      line-height: 1.5;
+    }
+
+    /* ── TOURNAMENT GROUP (folder) ── */
+    .tournament-group {
+      margin-bottom: 40px;
+    }
+
+    .group-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--mat-gold);
+    }
+
+    .group-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--mat-gold);
+    }
+
+    .tournament-nested {
+      margin-left: 20px;
+      padding-left: 16px;
+      border-left: 2px solid var(--mat-gray);
+      margin-bottom: 16px;
+    }
+
+    /* ── PHOTO GALLERY ── */
+    .photo-gallery {
+      margin-bottom: 20px;
+    }
+
+    .photo-gallery-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .photo-gallery-label svg {
+      width: 14px;
+      height: 14px;
+      fill: var(--mat-gold);
+      flex-shrink: 0;
+    }
+
+    .photo-gallery-label span {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--mat-gold);
+    }
+
+    .photo-strip {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .photo-thumb-wrap {
+      position: relative;
+      width: 120px;
+      height: 90px;
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid var(--mat-gray);
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: border-color 0.2s, transform 0.15s;
+    }
+
+    .photo-thumb-wrap:hover {
+      border-color: var(--mat-gold);
+      transform: translateY(-2px);
+    }
+
+    .photo-thumb-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .photo-caption-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.75));
+      padding: 4px 6px;
+      font-size: 9px;
+      color: var(--mat-white);
+      letter-spacing: 0.05em;
+      line-height: 1.3;
+    }
+
+    /* ── PHOTO LIGHTBOX ── */
+    .photo-lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.95);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .photo-lightbox.open { display: flex; }
+
+    .photo-lightbox img {
+      max-width: 100%;
+      max-height: 80vh;
+      object-fit: contain;
+      border-radius: 4px;
+      box-shadow: 0 4px 40px rgba(0,0,0,0.8);
+    }
+
+    .photo-lightbox-caption {
+      font-family: 'Oswald', sans-serif;
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mat-light);
+      text-align: center;
+    }
+
+    .photo-lightbox-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: var(--mat-gray);
+      border: none;
+      color: var(--mat-white);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── EMPTY STATE ── */
+    .empty-slot {
+      background: var(--mat-charcoal);
+      border: 1px dashed var(--mat-gray);
+      border-radius: 4px;
+      padding: 28px 20px;
+      text-align: center;
+    }
+
+    .empty-slot p {
+      font-size: 12px;
+      color: var(--mat-mid);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.open { display: flex; }
+
+    .modal {
+      width: 100%;
+      max-width: 840px;
+    }
+
+    .modal-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .modal-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--mat-white);
+    }
+
+    .modal-close {
+      background: var(--mat-gray);
+      border: none;
+      color: var(--mat-white);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-left: 16px;
+    }
+
+    .modal-video {
+      aspect-ratio: 16/9;
+      width: 100%;
+      background: #000;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .modal-video iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 24px;
+      border-top: 1px solid var(--mat-gray);
+      font-size: 11px;
+      color: var(--mat-mid);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 480px) {
+      .video-grid { grid-template-columns: 1fr; }
+      .hero-name { font-size: 48px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<header>
+  <p class="hero-eyebrow">Wrestling Archive</p>
+  <h1 class="hero-name">Your Son's<br/><span>Film Room</span></h1>
+  <p class="hero-sub">Camps &nbsp;·&nbsp; Match Film &nbsp;·&nbsp; Freestyle &nbsp;·&nbsp; Greco</p>
+</header>
+
+<!-- NAV -->
+<nav>
+  <button class="active" onclick="showSection('camps', this)">Camps</button>
+  <button onclick="showSection('freshman', this)">Freshman Year</button>
+  <button onclick="showSection('freestyle', this)">Freestyle</button>
+  <button onclick="showSection('greco', this)">Greco</button>
+</nav>
+
+<!-- MAIN -->
+<main>
+
+  <!-- ══════════════════════════════════════════
+       CAMPS
+  ══════════════════════════════════════════ -->
+  <div id="camps" class="section active">
+    <div class="section-header">
+      <p class="section-label">Training</p>
+      <h2 class="section-title">Camps</h2>
+    </div>
+
+    <div class="tournament">
+      <div class="tournament-header">
+        <div class="tournament-icon"></div>
+        <span class="tournament-name">Granby Camp</span>
+        <span class="tournament-meta">2026</span>
+      </div>
+      <div class="video-grid" id="granby-2026">
+        <!-- ADD VIDEOS HERE — copy a video-card block and paste Vimeo URL -->
+        <div class="empty-slot"><p>Videos coming soon</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       FRESHMAN YEAR
+  ══════════════════════════════════════════ -->
+  <div id="freshman" class="section">
+    <div class="section-header">
+      <p class="section-label">Match Film</p>
+      <h2 class="section-title">Freshman Year</h2>
+    </div>
+
+    <!-- Duals -->
+    <div class="tournament-group">
+      <div class="group-header">
+        <div class="tournament-icon" style="background:var(--mat-gold)"></div>
+        <span class="group-label">Duals</span>
+      </div>
+
+      <div class="tournament tournament-nested">
+        <div class="tournament-header">
+          <div class="tournament-icon"></div>
+          <span class="tournament-name">Helias Duals Invitational</span>
+        </div>
+        <div class="video-grid" id="helias-duals">
+          <div class="empty-slot"><p>Videos coming soon</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Freshman State -->
+    <div class="tournament">
+      <div class="tournament-header">
+        <div class="tournament-icon"></div>
+        <span class="tournament-name">Freshman State</span>
+      </div>
+      <div class="video-grid" id="freshman-state">
+        <div class="empty-slot"><p>Videos coming soon</p></div>
+      </div>
+    </div>
+
+    <!-- LSN JV Tournament -->
+    <div class="tournament">
+      <div class="tournament-header">
+        <div class="tournament-icon"></div>
+        <span class="tournament-name">LSN JV Tournament</span>
+      </div>
+      <div class="video-grid" id="lsn-jv">
+        <div class="empty-slot"><p>Videos coming soon</p></div>
+      </div>
+    </div>
+
+    <!-- Nationals -->
+    <div class="tournament">
+      <div class="tournament-header">
+        <div class="tournament-icon"></div>
+        <span class="tournament-name">Nationals</span>
+      </div>
+      <div class="video-grid" id="nationals-fr">
+        <div class="empty-slot"><p>Videos coming soon</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       FREESTYLE
+  ══════════════════════════════════════════ -->
+  <div id="freestyle" class="section">
+    <div class="section-header">
+      <p class="section-label">Competition</p>
+      <h2 class="section-title">Freestyle</h2>
+    </div>
+
+    <div class="tournament">
+      <div class="tournament-header">
+        <div class="tournament-icon"></div>
+        <span class="tournament-name">Freestyle</span>
+        <span class="tournament-meta">2026</span>
+      </div>
+      <div class="video-grid" id="freestyle-2026">
+        <div class="empty-slot"><p>Videos coming soon</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       GRECO
+  ══════════════════════════════════════════ -->
+  <div id="greco" class="section">
+    <div class="section-header">
+      <p class="section-label">Competition</p>
+      <h2 class="section-title">Greco-Roman</h2>
+    </div>
+
+    <div class="tournament">
+      <div class="tournament-header">
+        <div class="tournament-icon"></div>
+        <span class="tournament-name">Greco-Roman</span>
+        <span class="tournament-meta">2026</span>
+      </div>
+      <div class="video-grid" id="greco-2026">
+        <div class="empty-slot"><p>Videos coming soon</p></div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- PHOTO LIGHTBOX -->
+<div class="photo-lightbox" id="photo-lightbox" onclick="closePhoto(event)">
+  <button class="photo-lightbox-close" onclick="closePhoto()">✕</button>
+  <img id="photo-lightbox-img" src="" alt="" />
+  <div class="photo-lightbox-caption" id="photo-lightbox-caption"></div>
+</div>
+
+<!-- VIDEO MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeModal(event)">
+  <div class="modal">
+    <div class="modal-top">
+      <span class="modal-title" id="modal-title"></span>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-video">
+      <iframe id="modal-iframe" src="" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
+
+<footer>
+  Personal Archive &nbsp;·&nbsp; Updated as matches happen
+</footer>
+
+<script>
+  // ── TAB SWITCHING ──
+  function showSection(id, btn) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  // ── MODAL ──
+  function openVideo(url, title) {
+    document.getElementById('modal-title').textContent = title;
+    document.getElementById('modal-iframe').src = url;
+    document.getElementById('modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal(e) {
+    if (e && e.target !== document.getElementById('modal')) return;
+    document.getElementById('modal').classList.remove('open');
+    document.getElementById('modal-iframe').src = '';
+    document.body.style.overflow = '';
+  }
+
+  // ── PHOTO LIGHTBOX ──
+  function openPhoto(src, caption) {
+    document.getElementById('photo-lightbox-img').src = src;
+    document.getElementById('photo-lightbox-caption').textContent = caption || '';
+    document.getElementById('photo-lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closePhoto(e) {
+    if (e && e.target !== document.getElementById('photo-lightbox')) return;
+    document.getElementById('photo-lightbox').classList.remove('open');
+    document.getElementById('photo-lightbox-img').src = '';
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { closeModal(); closePhoto(); }
+  });
+
+  // ── HELPER: add a podium/tournament photo ──
+  // Usage: addPhoto('grid-id', 'image-url', 'Optional caption')
+  function addPhoto(gridId, imageUrl, caption) {
+    // Find or create the photo gallery for this tournament grid
+    const grid = document.getElementById(gridId);
+    const tournament = grid.closest('.tournament, .tournament-nested');
+
+    let gallery = tournament.querySelector('.photo-gallery');
+    if (!gallery) {
+      gallery = document.createElement('div');
+      gallery.className = 'photo-gallery';
+      gallery.innerHTML = `
+        <div class="photo-gallery-label">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <span>Podium &amp; Photos</span>
+        </div>
+        <div class="photo-strip"></div>
+      `;
+      tournament.querySelector('.tournament-header').insertAdjacentElement('afterend', gallery);
+    }
+
+    const strip = gallery.querySelector('.photo-strip');
+    const wrap = document.createElement('div');
+    wrap.className = 'photo-thumb-wrap';
+    wrap.onclick = () => openPhoto(imageUrl, caption);
+    wrap.innerHTML = `
+      <img src="${imageUrl}" alt="${caption || 'Tournament photo'}" loading="lazy" />
+      ${caption ? `<div class="photo-caption-overlay">${caption}</div>` : ''}
+    `;
+    strip.appendChild(wrap);
+  }
+
+  // ── HELPER: build a video card ──
+  // Usage: addVideo('grid-id', 'https://vimeo.com/...', 'Match Title', 'Optional note')
+  function addVideo(gridId, vimeoUrl, title, desc) {
+    const grid = document.getElementById(gridId);
+
+    // Remove empty slot if present
+    const empty = grid.querySelector('.empty-slot');
+    if (empty) empty.remove();
+
+    // Extract Vimeo ID
+    const match = vimeoUrl.match(/vimeo\.com\/(\d+)/);
+    const vimeoId = match ? match[1] : null;
+    const embedUrl = vimeoId
+      ? `https://player.vimeo.com/video/${vimeoId}?dnt=1`
+      : vimeoUrl;
+    const thumbUrl = vimeoId
+      ? `https://vumbnail.com/${vimeoId}.jpg`
+      : null;
+
+    const card = document.createElement('div');
+    card.className = 'video-card';
+    card.onclick = () => openVideo(embedUrl, title);
+    card.style.cursor = 'pointer';
+
+    card.innerHTML = `
+      <div class="video-thumb" style="${thumbUrl ? `background-image:url('${thumbUrl}');background-size:cover;background-position:center;` : ''}">
+        <div class="play-overlay">
+          <div class="play-btn">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="video-info">
+        <div class="video-title">${title}</div>
+        ${desc ? `<div class="video-desc">${desc}</div>` : ''}
+      </div>
+    `;
+
+    grid.appendChild(card);
+  }
+
+  // ══════════════════════════════════════════
+  // ADD VIDEOS:  addVideo('grid-id', 'vimeo-url', 'Title', 'Optional note')
+  // ADD PHOTOS:  addPhoto('grid-id', 'image-url', 'Caption')
+  //
+  // Grid IDs:
+  //   Camps:      granby-2026
+  //   Freshman:   helias-duals | freshman-state | lsn-jv | nationals-fr
+  //   Freestyle:  freestyle-2026
+  //   Greco:      greco-2026
+  // ══════════════════════════════════════════
+
+</script>
+</body>
+</html>
