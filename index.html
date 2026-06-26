@@ -569,6 +569,7 @@
   <button onclick="showSection('freshman', this)">Freshman Year</button>
   <button onclick="showSection('freestyle', this)">Freestyle</button>
   <button onclick="showSection('greco', this)">Greco</button>
+  <button onclick="showSection('instructional', this)">Instructional Videos</button>
 </nav>
 
 <!-- MAIN -->
@@ -721,6 +722,20 @@
     </div>
   </div>
 
+  <!-- ══════════════════════════════════════════
+       INSTRUCTIONAL VIDEOS
+  ══════════════════════════════════════════ -->
+  <div id="instructional" class="section">
+    <div class="section-header">
+      <p class="section-label">Study Film</p>
+      <h2 class="section-title">Instructional Videos</h2>
+    </div>
+
+    <div class="video-grid" id="instructional-videos">
+      <div class="empty-slot"><p>Videos coming soon</p></div>
+    </div>
+  </div>
+
 </main>
 
 <!-- PHOTO LIGHTBOX -->
@@ -831,15 +846,23 @@
     const empty = grid.querySelector('.empty-slot');
     if (empty) empty.remove();
 
-    // Extract Vimeo ID
-    const match = vimeoUrl.match(/vimeo\.com\/(\d+)/);
-    const vimeoId = match ? match[1] : null;
-    const embedUrl = vimeoId
-      ? `https://player.vimeo.com/video/${vimeoId}?dnt=1`
-      : vimeoUrl;
-    const thumbUrl = vimeoId
-      ? `https://vumbnail.com/${vimeoId}.jpg`
-      : null;
+    // Extract Vimeo or YouTube ID
+    let embedUrl, thumbUrl;
+    const vimeoMatch = vimeoUrl.match(/vimeo\.com\/(\d+)/);
+    const ytMatch = vimeoUrl.match(/(?:youtu\.be\/|youtube\.com\/watch\?v=|youtube\.com\/shorts\/)([a-zA-Z0-9_-]{11})/);
+
+    if (vimeoMatch) {
+      const vimeoId = vimeoMatch[1];
+      embedUrl = `https://player.vimeo.com/video/${vimeoId}?dnt=1`;
+      thumbUrl = `https://vumbnail.com/${vimeoId}.jpg`;
+    } else if (ytMatch) {
+      const ytId = ytMatch[1];
+      embedUrl = `https://www.youtube.com/embed/${ytId}`;
+      thumbUrl = `https://img.youtube.com/vi/${ytId}/hqdefault.jpg`;
+    } else {
+      embedUrl = vimeoUrl;
+      thumbUrl = null;
+    }
 
     const card = document.createElement('div');
     card.className = 'video-card';
@@ -873,7 +896,10 @@
   //   Freshman Tourneys:  helias-invitational | freshman-state | lsn-jv | nationals-fr
   //   Freestyle:          freestyle-2026
   //   Greco:              greco-2026
+  //   Instructional:      instructional-videos
   // ══════════════════════════════════════════
+
+  addVideo('instructional-videos', 'https://youtu.be/15m_iBEOP5w?si=nASD7XbnlpYA5Gns', 'How Top Wrestlers Move Faster Without Training More', 'Iron Faith Academy');
 
 </script>
 </body>
