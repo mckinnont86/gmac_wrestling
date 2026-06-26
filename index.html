@@ -849,7 +849,7 @@
     // Extract Vimeo or YouTube ID
     let embedUrl, thumbUrl;
     const vimeoMatch = vimeoUrl.match(/vimeo\.com\/(\d+)/);
-    const ytMatch = vimeoUrl.match(/(?:youtu\.be\/|youtube\.com\/watch\?v=|youtube\.com\/shorts\/)([a-zA-Z0-9_-]{11})(?:[?&]|$)/);
+    const ytMatch = vimeoUrl.match(/(?:youtu\.be\/|[?&]v=|\/embed\/|\/shorts\/)([a-zA-Z0-9_-]{11})/);
 
     if (vimeoMatch) {
       const vimeoId = vimeoMatch[1];
