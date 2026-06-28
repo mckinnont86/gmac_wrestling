@@ -597,15 +597,64 @@
 
 <!-- NAV -->
 <nav>
-  <button class="active" onclick="showSection('camps', this)">Camps</button>
+  <button class="active" onclick="showSection('home', this)">Home</button>
   <button onclick="showSection('freshman', this)">Freshman Year</button>
   <button onclick="showSection('freestyle', this)">Freestyle</button>
   <button onclick="showSection('greco', this)">Greco</button>
+  <button onclick="showSection('camps', this)">Camps</button>
   <button onclick="showSection('instructional', this)">Instructional Videos</button>
 </nav>
 
 <!-- MAIN -->
 <main>
+
+  <!-- ══════════════════════════════════════════
+       HOME
+  ══════════════════════════════════════════ -->
+  <div id="home" class="section active">
+    <div class="section-header">
+      <p class="section-label">Welcome</p>
+      <h2 class="section-title">G-Mac's Film Room</h2>
+    </div>
+
+    <div style="background:var(--mat-charcoal);border:1px solid var(--mat-gray);border-radius:4px;padding:40px 32px;max-width:600px;">
+      <div style="display:flex;flex-direction:column;gap:20px;">
+
+        <div style="display:flex;gap:16px;align-items:center;padding-bottom:20px;border-bottom:1px solid var(--mat-gray);">
+          <div style="width:4px;height:48px;background:var(--mat-red);border-radius:2px;flex-shrink:0;"></div>
+          <div>
+            <div style="font-family:'Oswald',sans-serif;font-size:28px;font-weight:700;text-transform:uppercase;color:var(--mat-white);">Gavin McKinnon</div>
+            <div style="font-size:13px;color:var(--mat-light);margin-top:4px;letter-spacing:0.05em;">— Info coming soon —</div>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div style="background:var(--mat-gray);border-radius:4px;padding:16px;">
+            <div style="font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--mat-red);margin-bottom:6px;">School</div>
+            <div style="font-size:14px;color:var(--mat-white);">— Coming soon —</div>
+          </div>
+          <div style="background:var(--mat-gray);border-radius:4px;padding:16px;">
+            <div style="font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--mat-red);margin-bottom:6px;">Weight Class</div>
+            <div style="font-size:14px;color:var(--mat-white);">— Coming soon —</div>
+          </div>
+          <div style="background:var(--mat-gray);border-radius:4px;padding:16px;">
+            <div style="font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--mat-red);margin-bottom:6px;">Year</div>
+            <div style="font-size:14px;color:var(--mat-white);">— Coming soon —</div>
+          </div>
+          <div style="background:var(--mat-gray);border-radius:4px;padding:16px;">
+            <div style="font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--mat-red);margin-bottom:6px;">Record</div>
+            <div style="font-size:14px;color:var(--mat-white);">— Coming soon —</div>
+          </div>
+        </div>
+
+        <div style="background:var(--mat-gray);border-radius:4px;padding:16px;">
+          <div style="font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--mat-red);margin-bottom:8px;">Bio</div>
+          <div style="font-size:13px;color:var(--mat-light);line-height:1.7;">— Coming soon —</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
 
   <!-- ══════════════════════════════════════════
        CAMPS
