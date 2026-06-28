@@ -578,6 +578,84 @@
       text-transform: uppercase;
     }
 
+    /* ── VIDEO LIST (clean text view) ── */
+    .video-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      margin-bottom: 8px;
+    }
+
+    .video-list-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 16px;
+      background: var(--mat-charcoal);
+      border: 1px solid var(--mat-gray);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      text-decoration: none;
+    }
+
+    .video-list-item:hover {
+      border-color: var(--mat-red);
+      background: var(--mat-gray);
+    }
+
+    .video-list-num {
+      font-family: 'Oswald', sans-serif;
+      font-size: 12px;
+      color: var(--mat-red);
+      min-width: 20px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .video-list-play {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--mat-red);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .video-list-play svg {
+      width: 12px;
+      height: 12px;
+      fill: white;
+      margin-left: 2px;
+    }
+
+    .video-list-info {
+      flex: 1;
+    }
+
+    .video-list-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--mat-white);
+    }
+
+    .video-list-desc {
+      font-size: 11px;
+      color: var(--mat-light);
+      margin-top: 2px;
+    }
+
+    .video-list-arrow {
+      color: var(--mat-mid);
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
     @media (max-width: 480px) {
       .video-grid { grid-template-columns: 1fr; }
       .hero-name { font-size: 48px; }
@@ -659,7 +737,7 @@
   <!-- ══════════════════════════════════════════
        CAMPS
   ══════════════════════════════════════════ -->
-  <div id="camps" class="section active">
+  <div id="camps" class="section">
     <div class="section-header">
       <p class="section-label">Training</p>
       <h2 class="section-title">Camps</h2>
@@ -671,7 +749,7 @@
         <span class="tournament-name">Granby Camp</span>
         <span class="tournament-meta">2026</span>
       </div>
-      <div class="video-grid" id="granby-2026">
+      <div id="granby-2026">
         <!-- ADD VIDEOS HERE — copy a video-card block and paste Vimeo URL -->
         <div class="empty-slot"><p>Videos coming soon</p></div>
       </div>
@@ -693,7 +771,7 @@
         <div class="tournament-icon" style="background:var(--mat-gold)"></div>
         <span class="group-label">Duals</span>
       </div>
-      <div class="video-grid" id="duals-videos">
+      <div id="duals-videos">
         <div class="empty-slot"><p>Videos coming soon</p></div>
       </div>
     </div>
@@ -711,7 +789,7 @@
           <div class="tournament-icon"></div>
           <span class="tournament-name">Helias Duals Invitational</span>
         </div>
-        <div class="video-grid" id="helias-invitational">
+        <div id="helias-invitational">
           <div class="empty-slot"><p>Videos coming soon</p></div>
         </div>
       </div>
@@ -722,7 +800,7 @@
           <div class="tournament-icon"></div>
           <span class="tournament-name">Freshman State</span>
         </div>
-        <div class="video-grid" id="freshman-state">
+        <div id="freshman-state">
           <div class="empty-slot"><p>Videos coming soon</p></div>
         </div>
       </div>
@@ -733,7 +811,7 @@
           <div class="tournament-icon"></div>
           <span class="tournament-name">LSN JV Tournament</span>
         </div>
-        <div class="video-grid" id="lsn-jv">
+        <div id="lsn-jv">
           <div class="empty-slot"><p>Videos coming soon</p></div>
         </div>
       </div>
@@ -744,7 +822,7 @@
           <div class="tournament-icon"></div>
           <span class="tournament-name">Nationals</span>
         </div>
-        <div class="video-grid" id="nationals-fr">
+        <div id="nationals-fr">
           <div class="empty-slot"><p>Videos coming soon</p></div>
         </div>
       </div>
@@ -771,7 +849,7 @@
           <div class="tournament-icon"></div>
           <span class="tournament-name">2026 Season</span>
         </div>
-        <div class="video-grid" id="freestyle-2026">
+        <div id="freestyle-2026">
           <div class="empty-slot"><p>Videos coming soon</p></div>
         </div>
       </div>
@@ -798,7 +876,7 @@
           <div class="tournament-icon"></div>
           <span class="tournament-name">2026 Season</span>
         </div>
-        <div class="video-grid" id="greco-2026">
+        <div id="greco-2026">
           <div class="empty-slot"><p>Videos coming soon</p></div>
         </div>
       </div>
@@ -813,7 +891,7 @@
       <p class="section-label">Film Study</p>
     </div>
 
-    <div class="video-grid" id="instructional-videos">
+    <div id="instructional-videos">
       <div class="empty-slot"><p>Videos coming soon</p></div>
     </div>
   </div>
@@ -919,53 +997,52 @@
     strip.appendChild(wrap);
   }
 
-  // ── HELPER: build a video card ──
-  // Usage: addVideo('grid-id', 'https://vimeo.com/...', 'Match Title', 'Optional note')
-  function addVideo(gridId, vimeoUrl, title, desc) {
+  // ── HELPER: build a video list item ──
+  // Usage: addVideo('grid-id', 'url', 'Title', 'Optional note')
+  function addVideo(gridId, videoUrl, title, desc) {
     const grid = document.getElementById(gridId);
 
     // Remove empty slot if present
     const empty = grid.querySelector('.empty-slot');
     if (empty) empty.remove();
 
-    // Extract Vimeo or YouTube ID
-    let embedUrl, thumbUrl;
-    const vimeoMatch = vimeoUrl.match(/vimeo\.com\/(\d+)/);
-    const ytMatch = vimeoUrl.match(/(?:youtu\.be\/|[?&]v=|\/embed\/|\/shorts\/)([a-zA-Z0-9_-]{11})/);
-
-    if (vimeoMatch) {
-      const vimeoId = vimeoMatch[1];
-      embedUrl = `https://player.vimeo.com/video/${vimeoId}?dnt=1`;
-      thumbUrl = `https://vumbnail.com/${vimeoId}.jpg`;
-    } else if (ytMatch) {
-      const ytId = ytMatch[1];
-      embedUrl = `https://www.youtube.com/embed/${ytId}`;
-      thumbUrl = `https://img.youtube.com/vi/${ytId}/hqdefault.jpg`;
-    } else {
-      embedUrl = vimeoUrl;
-      thumbUrl = null;
+    // Find or create list container
+    let list = grid.querySelector('.video-list');
+    if (!list) {
+      list = document.createElement('div');
+      list.className = 'video-list';
+      grid.appendChild(list);
     }
 
-    const card = document.createElement('div');
-    card.className = 'video-card';
-    card.onclick = () => openVideo(embedUrl, title);
-    card.style.cursor = 'pointer';
+    // Extract embed URL
+    let embedUrl;
+    const vimeoMatch = videoUrl.match(/vimeo\.com\/(\d+)/);
+    const ytMatch = videoUrl.match(/(?:youtu\.be\/|[?&]v=|\/embed\/|\/shorts\/)([a-zA-Z0-9_-]{11})/);
 
-    card.innerHTML = `
-      <div class="video-thumb" style="${thumbUrl ? `background-image:url('${thumbUrl}');background-size:cover;background-position:center;` : ''}">
-        <div class="play-overlay">
-          <div class="play-btn">
-            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-          </div>
-        </div>
+    if (vimeoMatch) {
+      embedUrl = `https://player.vimeo.com/video/${vimeoMatch[1]}?dnt=1`;
+    } else if (ytMatch) {
+      embedUrl = `https://www.youtube.com/embed/${ytMatch[1]}`;
+    } else {
+      embedUrl = videoUrl;
+    }
+
+    const num = list.children.length + 1;
+    const item = document.createElement('div');
+    item.className = 'video-list-item';
+    item.onclick = () => openVideo(embedUrl, title);
+    item.innerHTML = `
+      <span class="video-list-num">${num}</span>
+      <div class="video-list-play">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
       </div>
-      <div class="video-info">
-        <div class="video-title">${title}</div>
-        ${desc ? `<div class="video-desc">${desc}</div>` : ''}
+      <div class="video-list-info">
+        <div class="video-list-title">${title}</div>
+        ${desc ? `<div class="video-list-desc">${desc}</div>` : ''}
       </div>
+      <span class="video-list-arrow">›</span>
     `;
-
-    grid.appendChild(card);
+    list.appendChild(item);
   }
 
   // ══════════════════════════════════════════
