@@ -578,6 +578,83 @@
       text-transform: uppercase;
     }
 
+    /* ── ACCORDION ── */
+    .accordion {
+      margin-bottom: 16px;
+      border: 1px solid var(--mat-gray);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .accordion-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      background: var(--mat-charcoal);
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.2s;
+    }
+
+    .accordion-header:hover {
+      background: var(--mat-gray);
+    }
+
+    .accordion-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--mat-white);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .accordion-title::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 20px;
+      background: var(--mat-red);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    .accordion-meta {
+      font-size: 11px;
+      color: var(--mat-light);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-left: 16px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+    }
+
+    .accordion-chevron {
+      color: var(--mat-red);
+      font-size: 20px;
+      transition: transform 0.25s;
+      flex-shrink: 0;
+    }
+
+    .accordion.open .accordion-chevron {
+      transform: rotate(180deg);
+    }
+
+    .accordion-body {
+      display: none;
+      padding: 16px;
+      background: var(--mat-dark);
+      border-top: 1px solid var(--mat-gray);
+    }
+
+    .accordion.open .accordion-body {
+      display: block;
+    }
+
     /* ── COMPACT GRID LIST (for large video sets) ── */
     .video-list-compact {
       display: grid;
@@ -792,14 +869,15 @@
       <h2 class="section-title">Camps</h2>
     </div>
 
-    <div class="tournament">
-      <div class="tournament-header">
-        <div class="tournament-icon"></div>
-        <span class="tournament-name">Granby Camp</span>
-        <span class="tournament-meta">2026</span>
+    <div class="accordion" id="accordion-granby-2026">
+      <div class="accordion-header" onclick="toggleAccordion('accordion-granby-2026', this)">
+        <div class="accordion-title">Granby Camp <span class="accordion-meta">2026</span></div>
+        <span class="accordion-chevron">&#8964;</span>
       </div>
-      <div id="granby-2026">
+      <div class="accordion-body">
+        <div id="granby-2026">
         <div class="empty-slot"><p>Videos coming soon</p></div>
+        </div>
       </div>
     </div>
   </div>
@@ -971,6 +1049,12 @@
 </footer>
 
 <script>
+  // ── ACCORDION ──
+  function toggleAccordion(id, header) {
+    const acc = document.getElementById(id);
+    acc.classList.toggle('open');
+  }
+
   // ── TAB SWITCHING ──
   function showSection(id, btn) {
     document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
