@@ -891,71 +891,81 @@
       <h2 class="section-title">Freshman Year</h2>
     </div>
 
-    <!-- Duals -->
-    <div class="tournament-group">
-      <div class="group-header">
-        <div class="tournament-icon" style="background:var(--mat-gold)"></div>
-        <span class="group-label">Duals</span>
+    <div class="accordion" id="accordion-fr-duals">
+      <div class="accordion-header" onclick="toggleAccordion('accordion-fr-duals')">
+        <div class="accordion-title" style="color:var(--mat-gold)">Duals</div>
+        <span class="accordion-chevron" style="color:var(--mat-gold)">&#8964;</span>
       </div>
-      <div id="duals-videos">
-        <div class="empty-slot"><p>Videos coming soon</p></div>
+      <div class="accordion-body">
+        <div class="accordion" id="accordion-duals-videos">
+          <div class="accordion-header" onclick="toggleAccordion('accordion-duals-videos')">
+            <div class="accordion-title" style="font-size:14px">Duals</div>
+            <span class="accordion-chevron">&#8964;</span>
+          </div>
+          <div class="accordion-body">
+            <div id="duals-videos">
+              <div class="empty-slot"><p>Videos coming soon</p></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- Tournaments -->
-    <div class="tournament-group">
-      <div class="group-header">
-        <div class="tournament-icon" style="background:var(--mat-gold)"></div>
-        <span class="group-label">Tournaments</span>
+    <div class="accordion" id="accordion-fr-tournaments">
+      <div class="accordion-header" onclick="toggleAccordion('accordion-fr-tournaments')">
+        <div class="accordion-title" style="color:var(--mat-gold)">Tournaments</div>
+        <span class="accordion-chevron" style="color:var(--mat-gold)">&#8964;</span>
       </div>
-
-      <!-- Helias Duals Invitational -->
-      <div class="tournament tournament-nested">
-        <div class="tournament-header">
-          <div class="tournament-icon"></div>
-          <span class="tournament-name">Helias Duals Invitational</span>
+      <div class="accordion-body">
+        <div class="accordion" id="accordion-helias-invitational">
+          <div class="accordion-header" onclick="toggleAccordion('accordion-helias-invitational')">
+            <div class="accordion-title" style="font-size:14px">Helias Duals Invitational</div>
+            <span class="accordion-chevron">&#8964;</span>
+          </div>
+          <div class="accordion-body">
+            <div id="helias-invitational">
+              <div class="empty-slot"><p>Videos coming soon</p></div>
+            </div>
+          </div>
         </div>
-        <div id="helias-invitational">
-          <div class="empty-slot"><p>Videos coming soon</p></div>
+        <div class="accordion" id="accordion-freshman-state">
+          <div class="accordion-header" onclick="toggleAccordion('accordion-freshman-state')">
+            <div class="accordion-title" style="font-size:14px">Freshman State</div>
+            <span class="accordion-chevron">&#8964;</span>
+          </div>
+          <div class="accordion-body">
+            <div id="freshman-state">
+              <div class="empty-slot"><p>Videos coming soon</p></div>
+            </div>
+          </div>
         </div>
-      </div>
-
-      <!-- Freshman State -->
-      <div class="tournament tournament-nested">
-        <div class="tournament-header">
-          <div class="tournament-icon"></div>
-          <span class="tournament-name">Freshman State</span>
+        <div class="accordion" id="accordion-lsn-jv">
+          <div class="accordion-header" onclick="toggleAccordion('accordion-lsn-jv')">
+            <div class="accordion-title" style="font-size:14px">LSN JV Tournament</div>
+            <span class="accordion-chevron">&#8964;</span>
+          </div>
+          <div class="accordion-body">
+            <div id="lsn-jv">
+              <div class="empty-slot"><p>Videos coming soon</p></div>
+            </div>
+          </div>
         </div>
-        <div id="freshman-state">
-          <div class="empty-slot"><p>Videos coming soon</p></div>
-        </div>
-      </div>
-
-      <!-- LSN JV Tournament -->
-      <div class="tournament tournament-nested">
-        <div class="tournament-header">
-          <div class="tournament-icon"></div>
-          <span class="tournament-name">LSN JV Tournament</span>
-        </div>
-        <div id="lsn-jv">
-          <div class="empty-slot"><p>Videos coming soon</p></div>
-        </div>
-      </div>
-
-      <!-- Nationals -->
-      <div class="tournament tournament-nested">
-        <div class="tournament-header">
-          <div class="tournament-icon"></div>
-          <span class="tournament-name">Nationals</span>
-        </div>
-        <div id="nationals-fr">
-          <div class="empty-slot"><p>Videos coming soon</p></div>
+        <div class="accordion" id="accordion-nationals-fr">
+          <div class="accordion-header" onclick="toggleAccordion('accordion-nationals-fr')">
+            <div class="accordion-title" style="font-size:14px">Nationals</div>
+            <span class="accordion-chevron">&#8964;</span>
+          </div>
+          <div class="accordion-body">
+            <div id="nationals-fr">
+              <div class="empty-slot"><p>Videos coming soon</p></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ══════════════════════════════════════════
+    <!-- ══════════════════════════════════════════
        FREESTYLE
   ══════════════════════════════════════════ -->
   <div id="freestyle" class="section">
@@ -964,25 +974,28 @@
       <h2 class="section-title">Freestyle</h2>
     </div>
 
-    <div class="tournament-group">
-      <div class="group-header">
-        <div class="tournament-icon" style="background:var(--mat-gold)"></div>
-        <span class="group-label">2026</span>
+    <div class="accordion" id="accordion-freestyle-2026-group">
+      <div class="accordion-header" onclick="toggleAccordion('accordion-freestyle-2026-group')">
+        <div class="accordion-title" style="color:var(--mat-gold)">2026</div>
+        <span class="accordion-chevron" style="color:var(--mat-gold)">&#8964;</span>
       </div>
-
-      <div class="tournament tournament-nested">
-        <div class="tournament-header">
-          <div class="tournament-icon"></div>
-          <span class="tournament-name">2026 Season</span>
-        </div>
-        <div id="freestyle-2026">
-          <div class="empty-slot"><p>Videos coming soon</p></div>
+      <div class="accordion-body">
+        <div class="accordion" id="accordion-freestyle-2026">
+          <div class="accordion-header" onclick="toggleAccordion('accordion-freestyle-2026')">
+            <div class="accordion-title" style="font-size:14px">2026 Season</div>
+            <span class="accordion-chevron">&#8964;</span>
+          </div>
+          <div class="accordion-body">
+            <div id="freestyle-2026">
+              <div class="empty-slot"><p>Videos coming soon</p></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ══════════════════════════════════════════
+    <!-- ══════════════════════════════════════════
        GRECO
   ══════════════════════════════════════════ -->
   <div id="greco" class="section">
@@ -991,25 +1004,28 @@
       <h2 class="section-title">Greco-Roman</h2>
     </div>
 
-    <div class="tournament-group">
-      <div class="group-header">
-        <div class="tournament-icon" style="background:var(--mat-gold)"></div>
-        <span class="group-label">2026</span>
+    <div class="accordion" id="accordion-greco-2026-group">
+      <div class="accordion-header" onclick="toggleAccordion('accordion-greco-2026-group')">
+        <div class="accordion-title" style="color:var(--mat-gold)">2026</div>
+        <span class="accordion-chevron" style="color:var(--mat-gold)">&#8964;</span>
       </div>
-
-      <div class="tournament tournament-nested">
-        <div class="tournament-header">
-          <div class="tournament-icon"></div>
-          <span class="tournament-name">2026 Season</span>
-        </div>
-        <div id="greco-2026">
-          <div class="empty-slot"><p>Videos coming soon</p></div>
+      <div class="accordion-body">
+        <div class="accordion" id="accordion-greco-2026">
+          <div class="accordion-header" onclick="toggleAccordion('accordion-greco-2026')">
+            <div class="accordion-title" style="font-size:14px">2026 Season</div>
+            <span class="accordion-chevron">&#8964;</span>
+          </div>
+          <div class="accordion-body">
+            <div id="greco-2026">
+              <div class="empty-slot"><p>Videos coming soon</p></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ══════════════════════════════════════════
+    <!-- ══════════════════════════════════════════
        INSTRUCTIONAL VIDEOS
   ══════════════════════════════════════════ -->
   <div id="instructional" class="section">
