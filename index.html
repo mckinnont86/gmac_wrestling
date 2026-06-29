@@ -578,6 +578,55 @@
       text-transform: uppercase;
     }
 
+    /* ── COMPACT GRID LIST (for large video sets) ── */
+    .video-list-compact {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4px;
+      margin-bottom: 8px;
+    }
+
+    .video-list-compact .video-list-item {
+      padding: 10px 12px;
+      gap: 8px;
+    }
+
+    .video-list-compact .video-list-title {
+      font-size: 12px;
+      letter-spacing: 0.02em;
+    }
+
+    .video-list-compact .video-list-num {
+      font-size: 10px;
+      min-width: 16px;
+    }
+
+    .video-list-compact .video-list-play {
+      width: 22px;
+      height: 22px;
+    }
+
+    .video-list-compact .video-list-play svg {
+      width: 9px;
+      height: 9px;
+    }
+
+    .video-list-compact .video-list-arrow {
+      display: none;
+    }
+
+    @media (max-width: 640px) {
+      .video-list-compact {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 380px) {
+      .video-list-compact {
+        grid-template-columns: 1fr;
+      }
+    }
+
     /* ── VIDEO LIST (clean text view) ── */
     .video-list {
       display: flex;
@@ -750,7 +799,6 @@
         <span class="tournament-meta">2026</span>
       </div>
       <div id="granby-2026">
-        <!-- ADD VIDEOS HERE — copy a video-card block and paste Vimeo URL -->
         <div class="empty-slot"><p>Videos coming soon</p></div>
       </div>
     </div>
@@ -1007,10 +1055,12 @@
     if (empty) empty.remove();
 
     // Find or create list container
-    let list = grid.querySelector('.video-list');
+    // Use compact grid layout for large sets (granby)
+    const isCompact = gridId === 'granby-2026';
+    let list = grid.querySelector('.video-list, .video-list-compact');
     if (!list) {
       list = document.createElement('div');
-      list.className = 'video-list';
+      list.className = isCompact ? 'video-list-compact' : 'video-list';
       grid.appendChild(list);
     }
 
