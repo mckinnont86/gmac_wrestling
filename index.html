@@ -1116,11 +1116,10 @@
   // ── HELPER: add a podium/tournament photo ──
   // Usage: addPhoto('grid-id', 'image-url', 'Optional caption')
   function addPhoto(gridId, imageUrl, caption) {
-    // Find or create the photo gallery for this tournament grid
     const grid = document.getElementById(gridId);
-    const tournament = grid.closest('.tournament, .tournament-nested');
 
-    let gallery = tournament.querySelector('.photo-gallery');
+    // Find or create photo gallery inside the grid container
+    let gallery = grid.querySelector('.photo-gallery');
     if (!gallery) {
       gallery = document.createElement('div');
       gallery.className = 'photo-gallery';
@@ -1131,7 +1130,7 @@
         </div>
         <div class="photo-strip"></div>
       `;
-      tournament.querySelector('.tournament-header').insertAdjacentElement('afterend', gallery);
+      grid.insertAdjacentElement('afterbegin', gallery);
     }
 
     const strip = gallery.querySelector('.photo-strip');
