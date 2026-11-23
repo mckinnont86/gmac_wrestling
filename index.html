@@ -804,6 +804,7 @@
 <nav>
   <button class="active" onclick="showSection('home', this)">Home</button>
   <button onclick="showSection('freshman', this)">Freshman Year</button>
+  <button onclick="showSection('sophomore', this)">Sophomore Year</button>
   <button onclick="showSection('freestyle', this)">Freestyle</button>
   <button onclick="showSection('greco', this)">Greco</button>
   <button onclick="showSection('camps', this)">Camps</button>
@@ -953,6 +954,40 @@
               <div class="empty-slot"><p>Videos coming soon</p></div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       SOPHOMORE YEAR
+  ══════════════════════════════════════════ -->
+  <div id="sophomore" class="section">
+    <div class="section-header">
+      <p class="section-label">Match Film</p>
+      <h2 class="section-title">Sophomore Year</h2>
+    </div>
+
+    <div class="accordion" id="accordion-so-duals">
+      <div class="accordion-header" onclick="toggleAccordion('accordion-so-duals')">
+        <div class="accordion-title" style="color:var(--mat-gold)">Duals</div>
+        <span class="accordion-chevron" style="color:var(--mat-gold)">&#8964;</span>
+      </div>
+      <div class="accordion-body">
+        <div id="so-duals">
+          <div class="empty-slot"><p>Videos coming soon</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion" id="accordion-so-tournaments">
+      <div class="accordion-header" onclick="toggleAccordion('accordion-so-tournaments')">
+        <div class="accordion-title" style="color:var(--mat-gold)">Tournaments</div>
+        <span class="accordion-chevron" style="color:var(--mat-gold)">&#8964;</span>
+      </div>
+      <div class="accordion-body">
+        <div id="so-tournaments">
+          <div class="empty-slot"><p>Videos coming soon</p></div>
         </div>
       </div>
     </div>
@@ -1205,6 +1240,8 @@
   //   Camps:              granby-2026
   //   Freshman Duals:     duals-videos
   //   Freshman Tourneys:  helias-invitational | freshman-state | lsn-jv | nationals-fr
+  //   Sophomore Duals:    so-duals
+  //   Sophomore Tourneys: so-tournaments
   //   Freestyle:          freestyle-2026 | freestyle-ultimate-2026
   //   Greco:              greco-2026
   //   Instructional:      instructional-videos
