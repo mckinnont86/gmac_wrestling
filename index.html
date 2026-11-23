@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
   <title>Wrestling Archive</title>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
@@ -640,7 +641,7 @@
       flex-shrink: 0;
     }
 
-    .accordion.open .accordion-chevron {
+    .accordion.open > .accordion-header .accordion-chevron {
       transform: rotate(180deg);
     }
 
@@ -651,7 +652,7 @@
       border-top: 1px solid var(--mat-gray);
     }
 
-    .accordion.open .accordion-body {
+    .accordion.open > .accordion-body {
       display: block;
     }
 
@@ -1128,6 +1129,7 @@
   // Usage: addPhoto('grid-id', 'image-url', 'Optional caption')
   function addPhoto(gridId, imageUrl, caption) {
     const grid = document.getElementById(gridId);
+    if (!grid) { console.error('addPhoto: unknown grid id "' + gridId + '" (photo skipped):', imageUrl); return; }
 
     // Find or create photo gallery inside the grid container
     let gallery = grid.querySelector('.photo-gallery');
@@ -1151,8 +1153,12 @@
 
   // ── HELPER: build a video list item ──
   // Usage: addVideo('grid-id', 'url', 'Title', 'Optional note')
+  const seenVideoUrls = new Set();
   function addVideo(gridId, videoUrl, title, desc) {
     const grid = document.getElementById(gridId);
+    if (!grid) { console.error('addVideo: unknown grid id "' + gridId + '" (video skipped):', title, videoUrl); return; }
+    if (seenVideoUrls.has(videoUrl)) console.warn('addVideo: same link used twice:', videoUrl, '(' + title + ')');
+    seenVideoUrls.add(videoUrl);
 
     // Remove empty slot if present
     const empty = grid.querySelector('.empty-slot');
@@ -1205,9 +1211,9 @@
   //
   // Grid IDs:
   //   Camps:              granby-2026
-  //   Freshman Duals:     helias-duals
+  //   Freshman Duals:     duals-videos
   //   Freshman Tourneys:  helias-invitational | freshman-state | lsn-jv | nationals-fr
-  //   Freestyle:          freestyle-2026
+  //   Freestyle:          freestyle-2026 | freestyle-ultimate-2026
   //   Greco:              greco-2026
   //   Instructional:      instructional-videos
   // ══════════════════════════════════════════
