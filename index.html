@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
   <title>Wrestling Archive</title>
+  <link rel="preconnect" href="https://player.vimeo.com" />
+  <link rel="preconnect" href="https://i.vimeocdn.com" />
+  <link rel="preconnect" href="https://f.vimeocdn.com" />
+  <link rel="preconnect" href="https://www.youtube.com" />
+  <link rel="preconnect" href="https://i.ytimg.com" />
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     :root {
@@ -1094,7 +1099,7 @@
       <button class="modal-close" onclick="closeModal()">✕</button>
     </div>
     <div class="modal-video">
-      <iframe id="modal-iframe" src="" allow="autoplay; fullscreen" allowfullscreen></iframe>
+      <iframe id="modal-iframe" src="" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
     </div>
   </div>
 </div>
@@ -1116,6 +1121,16 @@
     document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
     document.getElementById(id).classList.add('active');
     btn.classList.add('active');
+  }
+
+  // ── PLAYER WARM-UP: prefetch the player page on hover/touch so the click opens faster ──
+  const warmed = new Set();
+  function warmPlayer(url) {
+    if (!url || warmed.has(url) || !/^https:\/\/(player\.vimeo\.com|www\.youtube\.com)\//.test(url)) return;
+    warmed.add(url);
+    const l = document.createElement('link');
+    l.rel = 'prefetch'; l.href = url; l.as = 'document';
+    document.head.appendChild(l);
   }
 
   // ── MODAL ──
@@ -1207,9 +1222,9 @@
     const ytMatch = videoUrl.match(/(?:youtu\.be\/|[?&]v=|\/embed\/|\/shorts\/)([a-zA-Z0-9_-]{11})/);
 
     if (vimeoMatch) {
-      embedUrl = `https://player.vimeo.com/video/${vimeoMatch[1]}?dnt=1`;
+      embedUrl = `https://player.vimeo.com/video/${vimeoMatch[1]}?dnt=1&autoplay=1&playsinline=1&title=0&byline=0&portrait=0`;
     } else if (ytMatch) {
-      embedUrl = `https://www.youtube.com/embed/${ytMatch[1]}`;
+      embedUrl = `https://www.youtube.com/embed/${ytMatch[1]}?autoplay=1&playsinline=1&rel=0`;
     } else {
       embedUrl = videoUrl;
     }
@@ -1218,6 +1233,8 @@
     const item = document.createElement('div');
     item.className = 'video-list-item';
     item.onclick = () => openVideo(embedUrl, title);
+    item.addEventListener('pointerenter', () => warmPlayer(embedUrl), { once: true });
+    item.addEventListener('touchstart', () => warmPlayer(embedUrl), { once: true, passive: true });
     item.innerHTML = `
       <span class="video-list-num">${num}</span>
       <div class="video-list-play">
