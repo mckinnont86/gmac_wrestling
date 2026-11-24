@@ -1,0 +1,39 @@
+# Built automatically from the FILM list in index.html (scripts/film.mjs sync-forms).
+# Don't edit by hand: changes are overwritten whenever the site changes.
+name: Add event
+description: Add a new tournament or event (videos optional; add them later with "Add video")
+title: "Add event"
+labels: [add-event]
+body:
+  - type: dropdown
+    id: where
+    attributes:
+      label: Which tab and group?
+      options:
+        - "Freshman Year › Tournaments"
+        - "Sophomore Year › Tournaments"
+        - "Freestyle › 2026"
+        - "Greco-Roman › 2026"
+    validations:
+      required: true
+  - type: input
+    id: name
+    attributes:
+      label: Event name
+      placeholder: Blue Springs Invitational
+    validations:
+      required: true
+  - type: input
+    id: date
+    attributes:
+      label: Date
+      placeholder: Dec 6, 2026  (or Dec 6–7, 2026)
+    validations:
+      required: true
+  - type: textarea
+    id: videos
+    attributes:
+      label: Videos (optional)
+      description: One per line - title, link, optional note. Leave empty to show "Videos coming soon".
+      placeholder: |
+        Match 1 https://vimeo.com/123456789

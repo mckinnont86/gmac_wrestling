@@ -1,0 +1,38 @@
+# Built automatically from the FILM list in index.html (scripts/film.mjs sync-forms).
+# Don't edit by hand: changes are overwritten whenever the site changes.
+name: Add video
+description: Add one or more match videos to the site
+title: "Add video"
+labels: [add-video]
+body:
+  - type: dropdown
+    id: where
+    attributes:
+      label: Where does it go?
+      description: Newest events are at the bottom of each tab. Not listed? Use the "Add event" form first.
+      options:
+        - "Camps › Granby Camp 2026"
+        - "Freshman Year › Duals"
+        - "Freshman Year › Tournaments › Helias Duals Invitational (Dec 13–14, 2025)"
+        - "Freshman Year › Tournaments › Freshman State (Jan 16, 2026)"
+        - "Freshman Year › Tournaments › LSN JV Tournament (Feb 7, 2026)"
+        - "Freshman Year › Tournaments › Nationals (Mar 14–15, 2026)"
+        - "Sophomore Year › Duals"
+        - "Freestyle › 2026 › Fight or Flight Freestyle (Apr 18, 2026)"
+        - "Freestyle › 2026 › Ultimate Freestyle (Apr 25, 2026)"
+        - "Greco-Roman › 2026 › Fight or Flight (Apr 11, 2026)"
+        - "Instructional Videos"
+    validations:
+      required: true
+  - type: textarea
+    id: videos
+    attributes:
+      label: Videos
+      description: |
+        One video per line: the title, then the Vimeo or YouTube link, then an optional note.
+        Leave the title off and it's numbered for you (Match 1, Match 2...).
+      placeholder: |
+        Match 1 https://vimeo.com/123456789
+        Match 2 https://vimeo.com/123456790 Semis
+    validations:
+      required: true
