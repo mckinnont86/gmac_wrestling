@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://player.vimeo.com" />
   <link rel="preconnect" href="https://i.vimeocdn.com" />
   <link rel="preconnect" href="https://f.vimeocdn.com" />
-  <link rel="preconnect" href="https://www.youtube.com" />
+  <link rel="preconnect" href="https://www.youtube-nocookie.com" />
   <link rel="preconnect" href="https://i.ytimg.com" />
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
@@ -661,6 +661,22 @@
       display: block;
     }
 
+    .film-problems { margin: 0 0 16px; padding: 12px 16px; border-radius: 4px; font-size: 13px; line-height: 1.5;
+      background: #3a3200; border: 1px solid var(--mat-gold); color: #fff6c8; }
+    .film-problems strong { display: block; margin-bottom: 4px; }
+    .film-broken { background: #3a0a10; border-color: var(--mat-red); color: #ffd9de; }
+
+    /* dropdown headers, video rows and photo thumbs are real buttons (keyboard + screen readers) */
+    button.accordion-header { width: 100%; border: 0; font: inherit; color: inherit; text-align: left; }
+    button.video-list-item { width: 100%; font: inherit; color: inherit; text-align: left; }
+    button.photo-thumb-wrap { padding: 0; background: none; font: inherit; color: inherit; text-align: left; }
+    .video-list-info, .video-list-title, .video-list-desc { display: block; }
+    .accordion-group > .accordion-header .accordion-title,
+    .accordion-group > .accordion-header .accordion-chevron { color: var(--mat-gold); }
+    .accordion-event > .accordion-header .accordion-title { font-size: 14px; }
+    .accordion-header:focus-visible, .video-list-item:focus-visible, .photo-thumb-wrap:focus-visible,
+    nav button:focus-visible { outline: 2px solid var(--mat-gold); outline-offset: 2px; }
+
     /* ── COMPACT GRID LIST (for large video sets) ── */
     .video-list-compact {
       display: grid;
@@ -876,17 +892,7 @@
       <h2 class="section-title">Camps</h2>
     </div>
 
-    <div class="accordion" id="accordion-granby-2026">
-      <div class="accordion-header" onclick="toggleAccordion('accordion-granby-2026', this)">
-        <div class="accordion-title">Granby Camp <span class="accordion-meta">2026</span></div>
-        <span class="accordion-chevron">&#8964;</span>
-      </div>
-      <div class="accordion-body">
-        <div id="granby-2026">
-        <div class="empty-slot"><p>Videos coming soon</p></div>
-        </div>
-      </div>
-    </div>
+    <div data-film="camps"></div>
   </div>
 
   <!-- ══════════════════════════════════════════
@@ -898,70 +904,7 @@
       <h2 class="section-title">Freshman Year</h2>
     </div>
 
-    <div class="accordion" id="accordion-fr-duals">
-      <div class="accordion-header" onclick="toggleAccordion('accordion-fr-duals')">
-        <div class="accordion-title" style="color:var(--mat-gold)">Duals</div>
-        <span class="accordion-chevron" style="color:var(--mat-gold)">&#8964;</span>
-      </div>
-      <div class="accordion-body">
-        <div id="duals-videos">
-          <div class="empty-slot"><p>Videos coming soon</p></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="accordion" id="accordion-fr-tournaments">
-      <div class="accordion-header" onclick="toggleAccordion('accordion-fr-tournaments')">
-        <div class="accordion-title" style="color:var(--mat-gold)">Tournaments</div>
-        <span class="accordion-chevron" style="color:var(--mat-gold)">&#8964;</span>
-      </div>
-      <div class="accordion-body">
-        <div class="accordion" id="accordion-helias-invitational">
-          <div class="accordion-header" onclick="toggleAccordion('accordion-helias-invitational')">
-            <div class="accordion-title" style="font-size:14px">Helias Duals Invitational — Dec 13–14, 2025</div>
-            <span class="accordion-chevron">&#8964;</span>
-          </div>
-          <div class="accordion-body">
-            <div id="helias-invitational">
-              <div class="empty-slot"><p>Videos coming soon</p></div>
-            </div>
-          </div>
-        </div>
-        <div class="accordion" id="accordion-freshman-state">
-          <div class="accordion-header" onclick="toggleAccordion('accordion-freshman-state')">
-            <div class="accordion-title" style="font-size:14px">Freshman State — Jan 16, 2026</div>
-            <span class="accordion-chevron">&#8964;</span>
-          </div>
-          <div class="accordion-body">
-            <div id="freshman-state">
-              <div class="empty-slot"><p>Videos coming soon</p></div>
-            </div>
-          </div>
-        </div>
-        <div class="accordion" id="accordion-lsn-jv">
-          <div class="accordion-header" onclick="toggleAccordion('accordion-lsn-jv')">
-            <div class="accordion-title" style="font-size:14px">LSN JV Tournament — Feb 7, 2026</div>
-            <span class="accordion-chevron">&#8964;</span>
-          </div>
-          <div class="accordion-body">
-            <div id="lsn-jv">
-              <div class="empty-slot"><p>Videos coming soon</p></div>
-            </div>
-          </div>
-        </div>
-        <div class="accordion" id="accordion-nationals-fr">
-          <div class="accordion-header" onclick="toggleAccordion('accordion-nationals-fr')">
-            <div class="accordion-title" style="font-size:14px">Nationals — Mar 14–15, 2026</div>
-            <span class="accordion-chevron">&#8964;</span>
-          </div>
-          <div class="accordion-body">
-            <div id="nationals-fr">
-              <div class="empty-slot"><p>Videos coming soon</p></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div data-film="freshman"></div>
   </div>
 
   <!-- ══════════════════════════════════════════
@@ -973,29 +916,7 @@
       <h2 class="section-title">Sophomore Year</h2>
     </div>
 
-    <div class="accordion" id="accordion-so-duals">
-      <div class="accordion-header" onclick="toggleAccordion('accordion-so-duals')">
-        <div class="accordion-title" style="color:var(--mat-gold)">Duals</div>
-        <span class="accordion-chevron" style="color:var(--mat-gold)">&#8964;</span>
-      </div>
-      <div class="accordion-body">
-        <div id="so-duals">
-          <div class="empty-slot"><p>Videos coming soon</p></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="accordion" id="accordion-so-tournaments">
-      <div class="accordion-header" onclick="toggleAccordion('accordion-so-tournaments')">
-        <div class="accordion-title" style="color:var(--mat-gold)">Tournaments</div>
-        <span class="accordion-chevron" style="color:var(--mat-gold)">&#8964;</span>
-      </div>
-      <div class="accordion-body">
-        <div id="so-tournaments">
-          <div class="empty-slot"><p>Videos coming soon</p></div>
-        </div>
-      </div>
-    </div>
+    <div data-film="sophomore"></div>
   </div>
 
     <!-- ══════════════════════════════════════════
@@ -1007,36 +928,7 @@
       <h2 class="section-title">Freestyle</h2>
     </div>
 
-    <div class="accordion" id="accordion-freestyle-2026-group">
-      <div class="accordion-header" onclick="toggleAccordion('accordion-freestyle-2026-group')">
-        <div class="accordion-title" style="color:var(--mat-gold)">2026</div>
-        <span class="accordion-chevron" style="color:var(--mat-gold)">&#8964;</span>
-      </div>
-      <div class="accordion-body">
-        <div class="accordion" id="accordion-freestyle-2026">
-          <div class="accordion-header" onclick="toggleAccordion('accordion-freestyle-2026')">
-            <div class="accordion-title" style="font-size:14px">Fight or Flight Freestyle — Apr 18, 2026</div>
-            <span class="accordion-chevron">&#8964;</span>
-          </div>
-          <div class="accordion-body">
-            <div id="freestyle-2026">
-              <div class="empty-slot"><p>Videos coming soon</p></div>
-            </div>
-          </div>
-        </div>
-        <div class="accordion" id="accordion-freestyle-ultimate-2026">
-          <div class="accordion-header" onclick="toggleAccordion('accordion-freestyle-ultimate-2026')">
-            <div class="accordion-title" style="font-size:14px">Ultimate Freestyle — Apr 25, 2026</div>
-            <span class="accordion-chevron">&#8964;</span>
-          </div>
-          <div class="accordion-body">
-            <div id="freestyle-ultimate-2026">
-              <div class="empty-slot"><p>Videos coming soon</p></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div data-film="freestyle"></div>
   </div>
 
     <!-- ══════════════════════════════════════════
@@ -1048,25 +940,7 @@
       <h2 class="section-title">Greco-Roman</h2>
     </div>
 
-    <div class="accordion" id="accordion-greco-2026-group">
-      <div class="accordion-header" onclick="toggleAccordion('accordion-greco-2026-group')">
-        <div class="accordion-title" style="color:var(--mat-gold)">2026</div>
-        <span class="accordion-chevron" style="color:var(--mat-gold)">&#8964;</span>
-      </div>
-      <div class="accordion-body">
-        <div class="accordion" id="accordion-greco-2026">
-          <div class="accordion-header" onclick="toggleAccordion('accordion-greco-2026')">
-            <div class="accordion-title" style="font-size:14px">Fight or Flight — Apr 11, 2026</div>
-            <span class="accordion-chevron">&#8964;</span>
-          </div>
-          <div class="accordion-body">
-            <div id="greco-2026">
-              <div class="empty-slot"><p>Videos coming soon</p></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div data-film="greco"></div>
   </div>
 
     <!-- ══════════════════════════════════════════
@@ -1075,11 +949,10 @@
   <div id="instructional" class="section">
     <div class="section-header">
       <p class="section-label">Film Study</p>
+      <h2 class="section-title">Instructional Videos</h2>
     </div>
 
-    <div id="instructional-videos">
-      <div class="empty-slot"><p>Videos coming soon</p></div>
-    </div>
+    <div data-film="instructional"></div>
   </div>
 
 </main>
@@ -1109,12 +982,6 @@
 </footer>
 
 <script>
-  // ── ACCORDION ──
-  function toggleAccordion(id, header) {
-    const acc = document.getElementById(id);
-    acc.classList.toggle('open');
-  }
-
   // ── TAB SWITCHING ──
   function showSection(id, btn) {
     document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
@@ -1126,7 +993,7 @@
   // ── PLAYER WARM-UP: prefetch the player page on hover/touch so the click opens faster ──
   const warmed = new Set();
   function warmPlayer(url) {
-    if (!url || warmed.has(url) || !/^https:\/\/(player\.vimeo\.com|www\.youtube\.com)\//.test(url)) return;
+    if (!url || warmed.has(url) || !/^https:\/\/(player\.vimeo\.com|www\.youtube-nocookie\.com)\//.test(url)) return;
     warmed.add(url);
     const l = document.createElement('link');
     l.rel = 'prefetch'; l.href = url; l.as = 'document';
@@ -1167,225 +1034,346 @@
     if (e.key === 'Escape') { closeModal(); closePhoto(); }
   });
 
-  // ── HELPER: add a podium/tournament photo ──
-  // Usage: addPhoto('grid-id', 'image-url', 'Optional caption')
-  function addPhoto(gridId, imageUrl, caption) {
-    const grid = document.getElementById(gridId);
-    if (!grid) { console.error('addPhoto: unknown grid id "' + gridId + '" (photo skipped):', imageUrl); return; }
+</script>
 
-    // Find or create photo gallery inside the grid container
-    let gallery = grid.querySelector('.photo-gallery');
-    if (!gallery) {
-      gallery = document.createElement('div');
-      gallery.className = 'photo-gallery';
-      gallery.innerHTML = `<div class="photo-strip"></div>`;
-      grid.insertAdjacentElement('afterbegin', gallery);
-    }
-
-    const strip = gallery.querySelector('.photo-strip');
-    const wrap = document.createElement('div');
-    wrap.className = 'photo-thumb-wrap';
-    wrap.onclick = () => openPhoto(imageUrl, caption);
-    wrap.innerHTML = `
-      <img src="${imageUrl}" alt="${caption || 'Tournament photo'}" loading="lazy" />
-      ${caption ? `<div class="photo-caption-overlay">${caption}</div>` : ''}
-    `;
-    strip.appendChild(wrap);
-  }
-
-  // ── HELPER: build a video list item ──
-  // Usage: addVideo('grid-id', 'url', 'Title', 'Optional note')
-  const seenVideoUrls = new Set();
-  function addVideo(gridId, videoUrl, title, desc) {
-    const grid = document.getElementById(gridId);
-    if (!grid) { console.error('addVideo: unknown grid id "' + gridId + '" (video skipped):', title, videoUrl); return; }
-    if (seenVideoUrls.has(videoUrl)) console.warn('addVideo: same link used twice:', videoUrl, '(' + title + ')');
-    seenVideoUrls.add(videoUrl);
-
-    // Remove empty slot if present
-    const empty = grid.querySelector('.empty-slot');
-    if (empty) empty.remove();
-
-    // Find or create list container
-    // Use compact grid layout for large sets (granby)
-    const isCompact = gridId === 'granby-2026';
-    let list = grid.querySelector('.video-list, .video-list-compact');
-    if (!list) {
-      list = document.createElement('div');
-      list.className = isCompact ? 'video-list-compact' : 'video-list';
-      grid.appendChild(list);
-    }
-
-    // Extract embed URL
-    let embedUrl;
-    const vimeoMatch = videoUrl.match(/vimeo\.com\/(\d+)/);
-    const ytMatch = videoUrl.match(/(?:youtu\.be\/|[?&]v=|\/embed\/|\/shorts\/)([a-zA-Z0-9_-]{11})/);
-
-    if (vimeoMatch) {
-      embedUrl = `https://player.vimeo.com/video/${vimeoMatch[1]}?dnt=1&autoplay=1&playsinline=1&title=0&byline=0&portrait=0`;
-    } else if (ytMatch) {
-      embedUrl = `https://www.youtube.com/embed/${ytMatch[1]}?autoplay=1&playsinline=1&rel=0`;
-    } else {
-      embedUrl = videoUrl;
-    }
-
-    const num = list.children.length + 1;
-    const item = document.createElement('div');
-    item.className = 'video-list-item';
-    item.onclick = () => openVideo(embedUrl, title);
-    item.addEventListener('pointerenter', () => warmPlayer(embedUrl), { once: true });
-    item.addEventListener('touchstart', () => warmPlayer(embedUrl), { once: true, passive: true });
-    item.innerHTML = `
-      <span class="video-list-num">${num}</span>
-      <div class="video-list-play">
-        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-      </div>
-      <div class="video-list-info">
-        <div class="video-list-title">${title}</div>
-        ${desc ? `<div class="video-list-desc">${desc}</div>` : ''}
-      </div>
-      <span class="video-list-arrow">›</span>
-    `;
-    list.appendChild(item);
-  }
-
-  // ══════════════════════════════════════════
-  // ADD VIDEOS:  addVideo('grid-id', 'vimeo-url', 'Title', 'Optional note')
-  // ADD PHOTOS:  addPhoto('grid-id', 'image-url', 'Caption')
+<!-- The film list sits in its own script: a typo here only affects the videos,
+     never the tabs, the video player or the photo viewer. -->
+<script>
+  // ════════════════════════════════════════════════════════════════
+  //  FILM LIST: every video and photo on the site lives here.
+  //  The tabs and dropdowns are built from this list. There is no HTML to edit.
   //
-  // Grid IDs:
-  //   Camps:              granby-2026
-  //   Freshman Duals:     duals-videos
-  //   Freshman Tourneys:  helias-invitational | freshman-state | lsn-jv | nationals-fr
-  //   Sophomore Duals:    so-duals
-  //   Sophomore Tourneys: so-tournaments
-  //   Freestyle:          freestyle-2026 | freestyle-ultimate-2026
-  //   Greco:              greco-2026
-  //   Instructional:      instructional-videos
-  // ══════════════════════════════════════════
+  //  THE SAFE WAY TO EDIT: copy an existing line that looks like what you
+  //  want, paste it right below, and change only the text inside the quotes.
+  //  Keep every comma, quote and bracket. Never change the words before a
+  //  colon (title:, url:, videos: ...).
+  //
+  //  ADD A VIDEO: in the event's videos: [ ... ] list, add a line like
+  //      { title: 'Match 6', url: 'https://vimeo.com/123456789' },
+  //    Optional extras, inside the { }:
+  //      note: 'Semis',          small grey line under the title
+  //      date: 'Jan 7, 2026',    shown after the title (used for duals)
+  //    Apostrophe in a name? Use double quotes around it instead:
+  //      { title: "Lee's Summit", url: 'https://vimeo.com/123456789' },
+  //    (Straight quotes only. Curly quotes pasted from Notes, Word or a
+  //    phone break the list.)
+  //
+  //  ADD A PHOTO: put the file in the images folder, then add to the event's
+  //    photos: [ ... ] list (create the list if the event has none):
+  //      { src: 'images/file.jpg', caption: '3rd Place' },
+  //    The event name and date are added to the caption automatically.
+  //
+  //  ADD A TOURNAMENT: copy a whole event block, from its { title: line down
+  //    to its closing ] }, into the right events: [ ... ] list, then change
+  //    the name, the date (in quotes, like 'Dec 6, 2026') and the videos.
+  //    Use  videos: []  until there is film; the page shows "Videos coming soon".
+  //
+  //  Order on the page = order here. Links can be vimeo.com/... (any Vimeo
+  //  link that has the video number in it) or YouTube (youtu.be/...,
+  //  youtube.com/watch?v=..., /shorts/, /live/).
+  //  CHECK YOUR EDIT: reload the page. If something is wrong, a yellow note
+  //  at the top of that tab says what and where. A typo in commas, quotes or
+  //  brackets shows a red note saying the film list could not load.
+  // ════════════════════════════════════════════════════════════════
+  const FILM = {
+    camps: [
+      { title: 'Granby Camp', meta: '2026', compact: true,
+        // Vimeo ids, in order. Titles are numbered automatically: Granby Video 1, 2, 3...
+        numbered: { prefix: 'Granby Video', note: 'Granby Camp 2026', vimeo: [
+          '1205509495', '1205509487', '1205509497', '1205509489', '1205509515', '1205509504', '1205509502', '1205509514',
+          '1205509517', '1205509521', '1205509527', '1205509505', '1205509525', '1205509526', '1205509545', '1205509538',
+          '1205509542', '1205509541', '1205509554', '1205509563', '1205509567', '1205509562', '1205509566', '1205509577',
+          '1205509581', '1205509557', '1205509579', '1205509570', '1205509580', '1205509587', '1205509589', '1205509592',
+          '1205509602', '1205509596', '1205509599', '1205509609', '1205509613', '1205509604', '1205509624', '1205509621',
+          '1205509642', '1205509631', '1205509640', '1205509651', '1205509652', '1205509655', '1205509661', '1205509666',
+          '1205509667', '1205509669', '1205509673', '1205509689', '1205509660', '1205509679', '1205509683', '1205509670',
+          '1205509671', '1205509694', '1205509674', '1205509699', '1205509680', '1205509705', '1205509710', '1205509711',
+          '1205509702',
+        ] } },
+    ],
 
-    addPhoto('freshman-state', 'images/freshman-state-podium.jpg', '3rd Place — Freshman State, Jan 16, 2026');
-  addVideo('freshman-state', 'https://vimeo.com/1208188810', 'Match 1', '');
-  addVideo('freshman-state', 'https://vimeo.com/1208136423', 'Match 2', '');
-  addVideo('freshman-state', 'https://vimeo.com/1208137715', 'Match 3', 'Semis');
-  addVideo('freshman-state', 'https://vimeo.com/1208144195', 'Match 4', 'Wrestle Back');
-  addVideo('freshman-state', 'https://vimeo.com/1208153280', 'Match 5', 'Third Place');
+    freshman: [
+      { title: 'Duals', group: true,
+        videos: [
+          { title: 'Liberty', date: 'Dec 2, 2025', url: 'https://vimeo.com/1205345298' },
+          { title: 'Grain Valley', date: 'Dec 10, 2025', url: 'https://vimeo.com/1205340879' },
+          { title: 'Staley', date: 'Dec 17, 2025', url: 'https://vimeo.com/1205336700' },
+          { title: 'Lee Summit', date: 'Jan 7, 2026', url: 'https://vimeo.com/1205430041' },
+          { title: 'RayPec', date: 'Jan 13, 2026', url: 'https://vimeo.com/1207963762' },
+          { title: 'Platte County Tri-Dual — vs Platte County', date: 'Jan 15, 2026', url: 'https://vimeo.com/1208073565' },
+          { title: 'Platte County Tri-Dual — vs Fort Osage', date: 'Jan 15, 2026', url: 'https://vimeo.com/1208074957' },
+          { title: 'Blue Springs South', date: 'Jan 21, 2026', url: 'https://vimeo.com/1205330223' },
+          { title: 'Liberty North', date: 'Jan 28, 2026', url: 'https://vimeo.com/1205331564' },
+          { title: 'Lee Summit West', date: 'Feb 4, 2026', url: 'https://vimeo.com/1208056674' },
+          { title: 'Belton', date: 'Feb 9, 2026', url: 'https://vimeo.com/1205170291' },
+        ] },
+      { title: 'Tournaments', group: true,
+        events: [
+          { title: 'Helias Duals Invitational', date: 'Dec 13–14, 2025',
+            photos: [
+              { src: 'images/helias-photo-1.jpg' },
+              { src: 'images/helias-photo-2.jpg' },
+              { src: 'images/helias-photo-3.jpg' },
+            ],
+            videos: [
+              { title: 'vs Centralia', url: 'https://vimeo.com/1205342601' },
+            ] },
+          { title: 'Freshman State', date: 'Jan 16, 2026',
+            photos: [
+              { src: 'images/freshman-state-podium.jpg', caption: '3rd Place' },
+            ],
+            videos: [
+              { title: 'Match 1', url: 'https://vimeo.com/1208188810' },
+              { title: 'Match 2', url: 'https://vimeo.com/1208136423' },
+              { title: 'Match 3', note: 'Semis', url: 'https://vimeo.com/1208137715' },
+              { title: 'Match 4', note: 'Wrestle Back', url: 'https://vimeo.com/1208144195' },
+              { title: 'Match 5', note: 'Third Place', url: 'https://vimeo.com/1208153280' },
+            ] },
+          { title: 'LSN JV Tournament', date: 'Feb 7, 2026',
+            videos: [
+              { title: 'Match 1', url: 'https://vimeo.com/1205220821' },
+              { title: 'Match 2', url: 'https://vimeo.com/1205229401' },
+            ] },
+          { title: 'Nationals', date: 'Mar 14–15, 2026',
+            photos: [
+              { src: 'images/nationals-photo.jpg' },
+              { src: 'images/nationals-photo-2.jpg' },
+            ],
+            videos: [
+              { title: 'Match 1', url: 'https://vimeo.com/1205301362' },
+              { title: 'Match 2', url: 'https://vimeo.com/1205306980' },
+            ] },
+        ] },
+    ],
 
-  addPhoto('helias-invitational', 'images/helias-photo-1.jpg', 'Helias Duals Invitational — Dec 13, 2025');
-  addPhoto('helias-invitational', 'images/helias-photo-2.jpg', 'Helias Duals Invitational — Dec 13, 2025');
-  addPhoto('helias-invitational', 'images/helias-photo-3.jpg', 'Helias Duals Invitational — Dec 13, 2025');
+    sophomore: [
+      { title: 'Duals', group: true,
+        videos: [
+        ] },
+      { title: 'Tournaments', group: true,
+        events: [
+          // e.g. { title: 'Tournament Name', date: 'Dec 6, 2026', videos: [ ... ] },
+        ] },
+    ],
 
-  addVideo('helias-invitational', 'https://vimeo.com/1205342601', 'vs Centralia', '');
+    freestyle: [
+      { title: '2026', group: true,
+        events: [
+          { title: 'Fight or Flight Freestyle', date: 'Apr 18, 2026',
+            videos: [
+              { title: 'Match 1', url: 'https://vimeo.com/1210639386' },
+              { title: 'Match 2', url: 'https://vimeo.com/1210639812' },
+              { title: 'Match 3', url: 'https://vimeo.com/1210639870' },
+            ] },
+          { title: 'Ultimate Freestyle', date: 'Apr 25, 2026',
+            videos: [
+              { title: 'Match 1', url: 'https://vimeo.com/1210641117' },
+              { title: 'Match 2', url: 'https://vimeo.com/1210641176' },
+            ] },
+        ] },
+    ],
 
-  addPhoto('nationals-fr', 'images/nationals-photo.jpg', 'Nationals — Mar 14, 2026');
-  addPhoto('nationals-fr', 'images/nationals-photo-2.jpg', 'Nationals — Mar 14, 2026');
-  addVideo('nationals-fr', 'https://vimeo.com/1205301362', 'Match 1', '');
+    greco: [
+      { title: '2026', group: true,
+        events: [
+          { title: 'Fight or Flight', date: 'Apr 11, 2026',
+            videos: [
+              { title: 'Match 1', url: 'https://vimeo.com/1208215064' },
+              { title: 'Match 2', url: 'https://vimeo.com/1208227352' },
+            ] },
+        ] },
+    ],
 
-  addVideo('nationals-fr', 'https://vimeo.com/1205306980', 'Match 2', '');
+    // No dropdown here: videos are listed straight on the tab.
+    instructional: [
+      { flat: true,
+        videos: [
+          { title: 'How Top Wrestlers Move Faster Without Training More', note: 'Iron Faith Academy', url: 'https://youtu.be/15m_iBEOP5w' },
+          { title: 'Buvaiser Saitiev - Training', url: 'https://youtu.be/ZXwufoUqOT4' },
+          { title: 'Sidakov Outside Step', url: 'https://www.youtube.com/watch?v=veDuiJrCgyQ' },
+          { title: 'Broomstick Mat Return', url: 'https://youtube.com/shorts/18RkQQOrJpI' },
+          { title: 'Broomstick Returns', url: 'https://youtube.com/shorts/M_NWZR9pmj0' },
+        ] },
+    ],
+  };
 
-  addVideo('lsn-jv', 'https://vimeo.com/1205220821', 'Match 1', '');
-  addVideo('lsn-jv', 'https://vimeo.com/1205229401', 'Match 2', '');
+</script>
 
-  addVideo('duals-videos', 'https://vimeo.com/1205345298', 'Liberty — Dec 2, 2025', '');
-  addVideo('duals-videos', 'https://vimeo.com/1205340879', 'Grain Valley — Dec 10, 2025', '');
-  addVideo('duals-videos', 'https://vimeo.com/1205336700', 'Staley — Dec 17, 2025', '');
-  addVideo('duals-videos', 'https://vimeo.com/1205430041', 'Lee Summit — Jan 7, 2026', '');
-  addVideo('duals-videos', 'https://vimeo.com/1207963762', 'RayPec — Jan 13, 2026', '');
-  addVideo('duals-videos', 'https://vimeo.com/1208073565', 'Platte County Tri-Dual — vs Platte County — Jan 15, 2026', '');
-  addVideo('duals-videos', 'https://vimeo.com/1208074957', 'Platte County Tri-Dual — vs Fort Osage — Jan 15, 2026', '');
-  addVideo('duals-videos', 'https://vimeo.com/1205330223', 'Blue Springs South — Jan 21, 2026', '');
-  addVideo('duals-videos', 'https://vimeo.com/1205331564', 'Liberty North — Jan 28, 2026', '');
-  addVideo('duals-videos', 'https://vimeo.com/1208056674', 'Lee Summit West — Feb 4, 2026', '');
-  addVideo('duals-videos', 'https://vimeo.com/1205170291', 'Belton — Feb 9, 2026', '');
+<script>
+  // ── RENDERER: builds each tab from FILM (nothing to edit below) ──
+  function el(tag, cls, text) {
+    const e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text != null) e.textContent = text;
+    return e;
+  }
+  function emptySlot() {
+    const d = el('div', 'empty-slot');
+    d.appendChild(el('p', null, 'Videos coming soon'));
+    return d;
+  }
 
-    addVideo('granby-2026', 'https://vimeo.com/1205509495', 'Granby Video 1', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509487', 'Granby Video 2', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509497', 'Granby Video 3', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509489', 'Granby Video 4', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509515', 'Granby Video 5', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509504', 'Granby Video 6', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509502', 'Granby Video 7', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509514', 'Granby Video 8', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509517', 'Granby Video 9', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509521', 'Granby Video 10', 'Granby Camp 2026');
+  // Link -> player URL. Unknown links return null and are skipped.
+  function embedFor(url) {
+    let m = String(url).match(/vimeo\.com\/(?:[^?#]*?\/)?(\d{6,})(?:\/([0-9a-f]{6,}))?(?=[/?#]|$)/);
+    if (m) {
+      const hash = m[2] || (String(url).match(/[?&]h=([0-9a-f]+)/) || [])[1];
+      return 'https://player.vimeo.com/video/' + m[1] + '?' + (hash ? 'h=' + hash + '&' : '') +
+             'dnt=1&autoplay=1&playsinline=1&title=0&byline=0&portrait=0';
+    }
+    m = String(url).match(/(?:youtu\.be\/|[?&]v=|\/embed\/|\/shorts\/|\/live\/)([A-Za-z0-9_-]{11})/);
+    if (m) return 'https://www.youtube-nocookie.com/embed/' + m[1] + '?autoplay=1&playsinline=1&rel=0';
+    return null;
+  }
 
-    addVideo('granby-2026', 'https://vimeo.com/1205509527', 'Granby Video 11', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509505', 'Granby Video 12', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509525', 'Granby Video 13', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509526', 'Granby Video 14', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509545', 'Granby Video 15', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509538', 'Granby Video 16', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509542', 'Granby Video 17', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509541', 'Granby Video 18', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509554', 'Granby Video 19', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509563', 'Granby Video 20', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509567', 'Granby Video 21', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509562', 'Granby Video 22', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509566', 'Granby Video 23', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509577', 'Granby Video 24', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509581', 'Granby Video 25', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509557', 'Granby Video 26', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509579', 'Granby Video 27', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509570', 'Granby Video 28', 'Granby Camp 2026');
+  const seenVideoUrls = new Set();
+  function renderVideos(videos, compact, where, sectionId) {
+    const list = el('div', compact ? 'video-list-compact' : 'video-list');
+    (videos || []).forEach(v => {
+      try {
+        const label = where + ' > ' + ((v && v.title) || 'video');
+        if (!checkKeys(v, 'video', sectionId, label)) return;
+        const embed = embedFor(v.url);
+        if (!embed) { problem(sectionId, label + ': link not recognised, video skipped (' + (v.url || 'no url') + ').'); return; }
+        if (seenVideoUrls.has(v.url)) problem(sectionId, label + ': same link is used twice (' + v.url + ').');
+        seenVideoUrls.add(v.url);
+        const title = (v.title || 'Video') + (v.date ? ' — ' + v.date : '');
+        const item = el('button', 'video-list-item');
+        item.type = 'button';
+        item.append(el('span', 'video-list-num', String(list.children.length + 1)));
+        const play = el('span', 'video-list-play');
+        play.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
+        const info = el('span', 'video-list-info');
+        info.append(el('span', 'video-list-title', title));
+        if (v.note) info.append(el('span', 'video-list-desc', v.note));
+        const arrow = el('span', 'video-list-arrow', '›');
+        arrow.setAttribute('aria-hidden', 'true');
+        item.append(play, info, arrow);
+        item.addEventListener('click', () => openVideo(embed, title));
+        item.addEventListener('pointerenter', () => warmPlayer(embed), { once: true });
+        item.addEventListener('touchstart', () => warmPlayer(embed), { once: true, passive: true });
+        list.append(item);
+      } catch (err) { problem(sectionId, where + ': a bad video entry was skipped.'); }
+    });
+    return list.children.length ? list : emptySlot();
+  }
 
-    addVideo('granby-2026', 'https://vimeo.com/1205509580', 'Granby Video 29', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509587', 'Granby Video 30', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509589', 'Granby Video 31', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509592', 'Granby Video 32', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509602', 'Granby Video 33', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509596', 'Granby Video 34', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509599', 'Granby Video 35', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509609', 'Granby Video 36', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509613', 'Granby Video 37', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509604', 'Granby Video 38', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509624', 'Granby Video 39', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509621', 'Granby Video 40', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509642', 'Granby Video 41', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509631', 'Granby Video 42', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509640', 'Granby Video 43', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509651', 'Granby Video 44', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509652', 'Granby Video 45', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509655', 'Granby Video 46', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509661', 'Granby Video 47', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509666', 'Granby Video 48', 'Granby Camp 2026');
+  function renderPhotos(photos, entry, where) {
+    const gallery = el('div', 'photo-gallery');
+    const strip = el('div', 'photo-strip');
+    gallery.append(strip);
+    const base = entry.title + (entry.date ? ', ' + entry.date : '');
+    photos.forEach(p => {
+      try {
+        if (!checkKeys(p, 'photo', entry.__section, where)) return;
+        if (!p.src) { problem(entry.__section, where + ': photo is missing src.'); return; }
+        const caption = p.caption ? p.caption + ' — ' + base : entry.title + (entry.date ? ' — ' + entry.date : '');
+        const wrap = el('button', 'photo-thumb-wrap');
+        wrap.type = 'button';
+        wrap.setAttribute('aria-label', 'Open photo: ' + caption);
+        const img = el('img');
+        img.src = p.src; img.alt = ''; img.loading = 'lazy';
+        wrap.append(img, el('span', 'photo-caption-overlay', caption));
+        wrap.addEventListener('click', () => openPhoto(p.src, caption));
+        strip.append(wrap);
+      } catch (err) { problem(entry.__section, where + ': a bad photo entry was skipped.'); }
+    });
+    return gallery;
+  }
 
-    addVideo('granby-2026', 'https://vimeo.com/1205509667', 'Granby Video 49', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509669', 'Granby Video 50', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509673', 'Granby Video 51', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509689', 'Granby Video 52', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509660', 'Granby Video 53', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509679', 'Granby Video 54', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509683', 'Granby Video 55', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509670', 'Granby Video 56', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509671', 'Granby Video 57', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509694', 'Granby Video 58', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509674', 'Granby Video 59', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509699', 'Granby Video 60', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509680', 'Granby Video 61', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509705', 'Granby Video 62', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509710', 'Granby Video 64', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509711', 'Granby Video 65', 'Granby Camp 2026');
-  addVideo('granby-2026', 'https://vimeo.com/1205509702', 'Granby Video 66', 'Granby Camp 2026');
+  const KNOWN = {
+    entry: ['title', 'date', 'meta', 'group', 'compact', 'flat', 'events', 'videos', 'photos', 'numbered'],
+    video: ['title', 'url', 'date', 'note'],
+    photo: ['src', 'caption'],
+  };
+  function checkKeys(obj, kind, sectionId, where) {
+    if (!obj || typeof obj !== 'object') { problem(sectionId, where + ': an entry is not in { } braces.'); return false; }
+    Object.keys(obj).forEach(k => {
+      if (!KNOWN[kind].includes(k)) problem(sectionId, where + ': unknown field "' + k + '" (expected one of: ' + KNOWN[kind].join(', ') + ').');
+    });
+    ['title', 'date', 'note', 'url', 'src', 'caption', 'meta'].forEach(k => {
+      if (k in obj && typeof obj[k] !== 'string') problem(sectionId, where + ': ' + k + ' should be in quotes, e.g. ' + k + ": '...'.");
+    });
+    return true;
+  }
 
-  addVideo('freestyle-2026', 'https://vimeo.com/1210639386', 'Match 1', '');
-  addVideo('freestyle-2026', 'https://vimeo.com/1210639812', 'Match 2', '');
-  addVideo('freestyle-2026', 'https://vimeo.com/1210639870', 'Match 3', '');
+  let accordionCount = 0;
+  function renderEntry(entry, depth, sectionId) {
+    const where = sectionId + ' > ' + ((entry && entry.title) || '(untitled)');
+    if (!checkKeys(entry, 'entry', sectionId, where)) throw new Error('not an entry');
+    if (!entry.flat && !entry.title) problem(sectionId, where + ': missing title.');
+    if (entry.events && entry.videos) problem(sectionId, where + ': has both events and videos; only the events are shown.');
+    const content = el('div', 'film-content');
+    if (entry.photos && entry.photos.length) content.append(renderPhotos(entry.photos, Object.assign({ __section: sectionId }, entry), where));
+    if (entry.events) {
+      entry.events.forEach(ev => {
+        try { content.append(renderEntry(ev, depth + 1, sectionId)); }
+        catch (err) { problem(sectionId, where + ': a bad event was skipped (' + err.message + ').'); }
+      });
+      if (!entry.events.length) content.append(emptySlot());
+    } else {
+      let videos = entry.videos;
+      const n = entry.numbered;
+      if (n) videos = (n.vimeo || []).map((id, i) => ({ title: n.prefix + ' ' + (i + 1), note: n.note, url: 'https://vimeo.com/' + id }));
+      content.append(renderVideos(videos, entry.compact, where, sectionId));
+    }
+    if (entry.flat) return content;
 
-  addVideo('freestyle-ultimate-2026', 'https://vimeo.com/1210641117', 'Match 1', '');
-  addVideo('freestyle-ultimate-2026', 'https://vimeo.com/1210641176', 'Match 2', '');
+    const id = 'film-' + (++accordionCount);
+    const acc = el('div', 'accordion' + (entry.group ? ' accordion-group' : '') + (depth ? ' accordion-event' : ''));
+    const header = el('button', 'accordion-header');
+    header.type = 'button';
+    header.setAttribute('aria-expanded', 'false');
+    header.setAttribute('aria-controls', id);
+    const title = el('span', 'accordion-title', (entry.title || '') + (entry.date ? ' — ' + entry.date : ''));
+    if (entry.meta) title.append(el('span', 'accordion-meta', entry.meta));
+    const chevron = el('span', 'accordion-chevron', '⌄');
+    chevron.setAttribute('aria-hidden', 'true');
+    header.append(title, chevron);
+    const body = el('div', 'accordion-body');
+    body.id = id;
+    body.append(content);
+    header.addEventListener('click', () => {
+      header.setAttribute('aria-expanded', String(acc.classList.toggle('open')));
+    });
+    acc.append(header, body);
+    return acc;
+  }
 
-  addVideo('greco-2026', 'https://vimeo.com/1208215064', 'Match 1', '');
-  addVideo('greco-2026', 'https://vimeo.com/1208227352', 'Match 2', '');
+  // Problems are shown as a note at the top of the tab, so a bad edit is
+  // easy to spot after a reload (and also logged to the browser console).
+  function problem(sectionId, msg) {
+    console.warn('Film list:', msg);
+    const host = document.querySelector('[data-film="' + sectionId + '"]') || document.querySelector('[data-film]');
+    if (!host) return;
+    let box = host.querySelector(':scope > .film-problems');
+    if (!box) {
+      box = el('div', 'film-problems');
+      box.append(el('strong', null, 'Film list needs a fix:'));
+      host.prepend(box);
+    }
+    box.append(el('div', null, msg));
+  }
 
-  addVideo('instructional-videos', 'https://youtu.be/15m_iBEOP5w?si=nASD7XbnlpYA5Gns', 'How Top Wrestlers Move Faster Without Training More', 'Iron Faith Academy');
-
-  addVideo('instructional-videos', 'https://youtu.be/ZXwufoUqOT4?si=RccbVUB5OxauJfMM', 'Buvaiser Saitiev - Training', '');
-
-  addVideo('instructional-videos', 'https://www.youtube.com/watch?v=veDuiJrCgyQ', 'Sidakov Outside Step', '');
-
-  addVideo('instructional-videos', 'https://youtube.com/shorts/18RkQQOrJpI', 'Broomstick Mat Return', '');
-
-  addVideo('instructional-videos', 'https://youtube.com/shorts/M_NWZR9pmj0', 'Broomstick Returns', '');
+  if (typeof FILM === 'undefined' || !FILM || typeof FILM !== 'object') {
+    console.error('Film list: FILM did not load (typo in commas, quotes or brackets?)');
+    document.querySelectorAll('[data-film]').forEach(host => {
+      const box = el('div', 'film-problems film-broken');
+      box.append(el('strong', null, 'The film list could not load.'));
+      box.append(el('div', null, 'The last edit has a typo: a missing comma, quote or bracket, or a curly quote. Undo the last change, or check it against the lines around it.'));
+      host.append(box);
+    });
+  } else {
+    Object.keys(FILM).forEach(sectionId => {
+      const host = document.querySelector('[data-film="' + sectionId + '"]');
+      if (!host) { problem(sectionId, 'there is no tab called "' + sectionId + '". The tab names are: ' + [...document.querySelectorAll('[data-film]')].map(h => h.dataset.film).join(', ') + '.'); return; }
+      if (!Array.isArray(FILM[sectionId])) { problem(sectionId, sectionId + ': should be a list in [ ] brackets.'); return; }
+      FILM[sectionId].forEach(entry => {
+        try { host.append(renderEntry(entry, 0, sectionId)); }
+        catch (err) { problem(sectionId, 'a bad entry in ' + sectionId + ' was skipped (' + err.message + ').'); }
+      });
+    });
+  }
 
 </script>
 </body>
